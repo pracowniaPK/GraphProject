@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
 
+  <!-- vis.js -->
+  <script src="node_modules/vis/dist/vis.js"></script>
+  <link href="node_modules/vis/dist/vis.css" rel="stylesheet" type="text/css" />
+
   <title>Hello, world!</title>
   <link rel="stylesheet" href="styl.css" />
 </head>
@@ -43,7 +47,8 @@
           </form>
         </div>
         <div class=" col-sm-8 ">
-          <div id="basic graph ">graf podstawowy</div>
+          <div id="basic graph"></div>
+          <script src="graph.js"></script>
           <div id="max graph ">graf o maksymalnych krawędziach</div>
         </div>
       </div>

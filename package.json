@@ -1,0 +1,25 @@
+{
+  "name": "graphproject",
+  "version": "1.0.0",
+  "description": "projekt na przedmiot Grafy i Sieci",
+  "main": "graph.js",
+  "dependencies": {
+    "install": "^0.11.0",
+    "npm": "^6.1.0",
+    "vis": "^4.21.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pracowniaPK/GraphProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pracowniaPK/GraphProject/issues"
+  },
+  "homepage": "https://github.com/pracowniaPK/GraphProject#readme"
+}
