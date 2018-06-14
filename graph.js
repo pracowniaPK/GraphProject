@@ -24,9 +24,30 @@ function zczytaj() {
     }
   }
 
-  var neighborMatrix = CreatorArray2d(unique.length);
+  var neighborMatrix = new Array(unique.length);
+  //function to creat Array two dimension
+  for (i = 0; i < unique.length; i++) {
+    neighborMatrix[i] = new Array(unique.length);
+    for (j = 0; j < unique.length; j++) {
+      neighborMatrix[i][j] = 0;
+    }
+  }
+
+  for (i = 0; i < edges.length; i++) {
+    singleEdge = edges[i].split(/\s/);
+    for (j = 0; j < unique.length; j++) {
+      if (singleEdge[0] == unique[j]) break;
+    }
+    for (k = 0; k < unique.length; k++) {
+      if (singleEdge[1] == unique[k]) break;
+    }
+
+    neighborMatrix[j][k] = 1;
+    neighborMatrix[k][j] = 1;
+  }
 
   console.log(unique);
+  console.log(neighborMatrix);
 
   // create an array with nodes
   var nodes = new vis.DataSet([
@@ -54,13 +75,4 @@ function zczytaj() {
   };
   var options = {};
   var network = new vis.Network(container, data, options);
-}
-
-//unction to creat Array two dimension
-function CreatorArray2d(liczba_wierszy) {
-  var tab = new Array(liczba_wierszy);
-  for (var i = 0; i < liczba_wierszy; i++) {
-    tab[i] = [];
-  }
-  return tab;
 }
