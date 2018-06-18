@@ -51,11 +51,7 @@ function zczytaj() {
   for (i = 0; i < unique.length; i++) {
     tab1.push({ id: i, label: unique[i] });
   }
-
   var nodes = new vis.DataSet(tab1);
-
-  console.log(unique);
-  console.log(neighborMatrix);
 
   // create an array with edges
   var tab2 = new Array();
@@ -66,7 +62,6 @@ function zczytaj() {
       }
     }
   }
-
   var edges = new vis.DataSet(tab2);
 
   // create a network
@@ -77,4 +72,63 @@ function zczytaj() {
   };
   var options = {};
   var network = new vis.Network(container, data, options);
+
+  console.log(unique);
+  console.log(neighborMatrix);
+
+  ////////////////////////////////////////////////////////////
+  //Skojarzenie maksymalne (ang. Maximal matching)
+  ////////////////////////////////////////////////////////////
+
+  //copy unique
+
+  var table = unique.slice();
+
+  tab2 = new Array();
+  while (table.length > 1) {
+    console.log(tab2);
+    var a = table[0];
+    var b = table[1];
+
+    console.log(a);
+    console.log(b);
+    for (i = 0; i < unique.length; i++) {
+      if (unique[i] == a) {
+        break;
+      }
+    }
+
+    for (j = 0; j < unique.length; j++) {
+      if (unique[j] == b) break;
+    }
+
+    if (neighborMatrix[i][j] == 1) {
+      tab2.push({ from: i, to: j, color: "#000000" });
+      table.shift();
+      table.shift();
+      console.log("dupa");
+    } else {
+      table.shift();
+      table.push(a);
+      console.log("nie dupa");
+    }
+  }
+  var edges2 = new vis.DataSet(tab2);
+  // create a network
+  var container2 = document.getElementById("max_graph");
+  var data2 = {
+    nodes: nodes,
+    edges: edges2
+  };
+  var options = {};
+  var network = new vis.Network(container2, data2, options);
 }
+
+function getGraphMatrix(rawInput) {}
+
+/*
+{ from: 1, to: 3, color: { color: "#ef8fd2", opacity: 0.3 } },
+{ from: 1, to: 2, color: { color: "#ef8fd2" } },
+
+ tab2.push({ from: i, to: j, color: "#ef8fd2" });
+*/
