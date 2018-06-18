@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Grafy i sieci</title>
   <link rel="stylesheet" href="styl.css" />
 </head>
 
@@ -41,19 +41,58 @@
         <p>Opracować i zaimplementować algorytm poszukujący maksymalnego zbioru krawędzi niezależnych grafu spójnego.</p>
         <h2>Rozwiązanie</h2>
         <p>
-          <strong>krawędzie niezależne</strong> - krawędzie nieposiadajace wspólnego wierzchołka </p>
+          graf spójny - graf w którym dla każdej pary wierzchołków istnieje łącząca je ścieżka </p>
         <p>
-          <strong>graf spójny</strong> - graf w którym dla każdej pary wierzchołków istnieje łącząca je ścieżka </p>
+          zbiór krawędzi niezależnych - inaczej skojarzenie </p>
+        <p>
+          skojarzenie maksymalne - jest to takie skojarzenie w grafie , że po dodaniu dowolnej krawędzi spośród krawędzi G do tego
+          skojarzenia, przestaje ono być skojarzeniem.
+        </p>
         <h4>Algorytm</h4>
-        <p class="text-monospace">weź graf
-          <br /> zwróć zbiór krawędzi
-          <br />...
-          <br />tu będzie model algorytmu
+        <p>Model algorytmu w pseudokodzie:</p>
+        <p class="text-monospace">
+          <pre>
+maksymalne_skojarzenie(graf){
+  lista_wierzchołków = E(graf)  // lista_wierzchołków będzie zbiorem wierzchołków niezawartych w skojarzeniu
+  skojarzenie = []
+  
+  licznik = 0
+  dopóki (długość(lista_wierzchołków) > 1){
+    W = lista_wierzchołków.pop()
+    znaleziono = Flase
+    // szukamy nowych krawędzi dla skojarzenia
+    dla każdego W2 w lista_wierzchołków {
+      jeśli W-W2 należy do E(graf){
+        skoajrzenie.dodaj(W-W2)
+        lista_wierzchołków.usuń(W)
+        lista_wierzchołków.usuń(W2)
+        znaleziono = True
+        licznik = 0
+        break
+      }
+    }
+    jeśli not znaleziono{
+      lista_wierzchołków.usuń(W)
+      lista_wierzchołków.dodaj_na_koniec(W)
+      licznik ++
+    }
+    // czy minął pełen obrót wirzchołków bez znalezienia nowych krawędzi do skojarzenia?
+    jeśli licznik > długość(lista_wierzchołków){
+      break
+    }
+  }
+
+  return skojarzenie
+}
+        </pre>
         </p>
         <h4>Dowód poprawności</h4>
-        <p>na moje oko jest ok</p>
+        <p>Algorytm dodaje krawędzie do skojarzenia dopóki jest to możliwe, gdy przestaje być to możliwe to zgodnie z definicją
+          skojarzenia maksymalnego otrzymujemy takie skojarzenie. </p>
+        <p>Algorym zatzymuje się po wykorzystaniu wszystkich wierzchołków lub po bezowocnym pełnym cyklu sprawdzania wierzchołków
+          - czy mogą utworzyć nową krawędź w skojarzeniu.</p>
         <h4>Złożoność obliczeniowa</h4>
-        <p>O(1)</p>
+        <p>Pesymistyczna złożoność obliczeniowa: O(V*V)</p>
       </div>
     </div>
     <div class="col-lg-2"></div>
